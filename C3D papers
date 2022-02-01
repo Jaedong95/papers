@@ -1,0 +1,22 @@
+1. 학습 데이터 생성 과정 (Input) 
+- all video frames: 128 * 171 (resize) 
+- videos -> non-overlapped 16 frame clips (input to the networks) 
+- input dimension: 3 * 16 * 128 * 171  (c * l * w * h, c: number of the channels, l: length in number of frames) 
+- jittering by using random crops with a size of 3 * 16 * 112 * 112 of the input clips 
+
+frame 별로 이상행동 여부를 판단하기 어려워서 - 
+
+2. 모델 구조 (알고리즘) 
+- Conv layers, 5 pooling layers  (convolution layer -> pooling layer) 
+- 2 fully-connected layers  + softmax loss layer (predict action labels) 
+- numbers of filters for 5 conv layers: 64, 128, 256, 256, 256 
+- all convolution kernels have a size of d (kernel temporal depth) 
+- all of these conv layers: applied with appropriate padding, stride 1 
+- all of these pooling layers: max pooling with kernel size 2 * 2 * 2 (except for the first layer)
+- the first pooling layer: kernel size 1 * 2 * 2 with the intention of not to merge the temporal signal too early and also to satisfy the clip length of 16 frames 
+- two fully connected layers: 2048 outputs 
+- train the networks using mini-batches of 30 clips, initial rate: 0.003 
+- learning rate: divided by 10 after every 4 epochs 
+- trainning stopped after 16 epochs 
+
+3. 
