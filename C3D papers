@@ -4,7 +4,7 @@
 - input dimension: 3 * 16 * 128 * 171  (c * l * w * h, c: number of the channels, l: length in number of frames) 
 - jittering by using random crops with a size of 3 * 16 * 112 * 112 of the input clips 
 
-frame 별로 이상행동 여부를 판단하기 어려워서 - 
+frame 별로 이상행동 여부를 판단하기 어려워서 - 	
 
 2. 모델 구조 (알고리즘) 
 - Conv layers, 5 pooling layers  (convolution layer -> pooling layer) 
